@@ -4,14 +4,14 @@
 
 | 이름 | 설명 | 바로 실행 |
 |---|---|---|
-| **ACE-Step 1.5 — 무료 T4 (Kaggle · Colab)** | 노래 생성 · 가벼운 편곡 시험. turbo 모델, 설치 → 모델 → 공개 주소까지 자동 | [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb) |
+| **ACE-Step 1.5 — 무료 T4 (Kaggle · Colab)** | 노래 생성 · 가벼운 편곡 시험. turbo 모델, 설치 → 모델 → 공개 주소까지 자동 | [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/elrohm0119/ace-step-1-5-one-click-gradio) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb) |
 | **ACE-Step 1.5 XL base 편곡 — Runpod (48GB)** | 원곡 선율을 지키는 편곡(cover). Deploy 하면 Pod 가 뜨면서 설치 · 모델까지 자동, 5~8분 뒤 화면 | [![Deploy on Runpod](https://img.shields.io/badge/Deploy%20on-Runpod-673ab7)](https://console.runpod.io/deploy?template=7y2vpgweau) |
 
-> Runpod 템플릿은 지금 비공개 — 만든 계정에서만 버튼이 열린다.
+> Kaggle 은 공개 노트북을 **Copy & Edit** 한 뒤 Run All, Runpod 은 공개 템플릿으로 Deploy.
 
 ## 쓰는 방법
 
-1. 위 **Open In Kaggle** 또는 **Open In Colab** 버튼
+1. 위 **Open In Kaggle**(→ Copy & Edit) 또는 **Open In Colab** 버튼
 2. Kaggle: 오른쪽 Settings → *Internet on* · *Accelerator GPU T4* / Colab: 런타임 유형 T4 GPU
 3. **Run All** → 5~10분 뒤 출력에 `🌐 접속 주소: https://…` 가 나온다
    - 기본은 gradio 공개 주소(`*.gradio.live`, 72시간). 1분 안에 안 나오면 cloudflared 터널(`*.trycloudflare.com`)로 자동 전환
