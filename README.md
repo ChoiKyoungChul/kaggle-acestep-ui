@@ -13,8 +13,8 @@ Kaggle 노트북 셀 하나로 [ACE-Step 1.5](https://github.com/ace-step/ACE-St
 
 | 값 | 용도 |
 |---|---|
-| `acestep-v15-xl-base` (기본) | 편곡 — 원곡 선율을 유지하는 것은 XL base 뿐이었다 |
-| `acestep-v15-turbo` | 가벼운 시험 · 새 곡 생성 |
+| `acestep-v15-turbo` (기본) | T4 에서 새 곡 생성 · 가벼운 편곡 시험 |
+| `acestep-v15-xl-base` | 편곡 — 원곡 선율을 유지하는 것은 XL base 뿐이었다. float32 로 16GB 를 넘어 **24GB 이상 GPU** 필요 |
 
 ## 미리 막아 둔 함정
 
@@ -23,9 +23,10 @@ Kaggle 노트북 셀 하나로 [ACE-Step 1.5](https://github.com/ace-step/ACE-St
 | 편곡 · 악기 추가 결과가 무음이나 잡음 | T4 는 bf16 이 없어 float16 을 쓰는데 cover · lego 에서 NaN → 코드를 float32 로 바꾼다 |
 | 하위 프로세스가 바로 죽음 | 노트북의 `MPLBACKEND` 값이 넘어감 → `Agg` 로 지정 |
 | 화면을 열어도 모델이 없음 | `--init_service true --config_path …` 로 시작할 때 올려 둔다 |
-| 메모리 부족 | float32 로 커진 만큼 `int8_weight_only` + CPU offload 로 줄인다 |
+| NaN 잠재값(무음 · 잡음) | INT8 양자화가 원인 → `--quantization none`, 대신 CPU offload 로 메모리를 줄인다 |
 
 ## 알려진 한계
 
-- XL base 를 T4(16GB)에서 float32 + int8 로 돌리는 조합은 아직 끝까지 확인하지 못했다. 메모리 부족으로 멈추면 48GB GPU(예: Runpod A40)에서 돌린다.
+- 원곡 선율을 지키는 편곡(XL base)은 T4 에서 메모리가 모자란다 → 48GB GPU(예: Runpod A40)에서 돌린다.
+- 참고: [TeamAIQ/Colab-notebooks](https://github.com/TeamAIQ/Colab-notebooks) 의 ACE-Step 노트북도 T4 에서 turbo 를 쓰고 INT8 을 끈다.
 - 원곡을 편곡한 결과는 원곡 권리 확인 전에는 공개하지 않는다.
