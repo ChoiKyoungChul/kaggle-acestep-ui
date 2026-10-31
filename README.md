@@ -22,6 +22,16 @@
 | `acestep-v15-xl-turbo` | 더 좋은 음질의 새 곡 생성(메모리 여유가 적다) |
 | `acestep-v15-xl-base` | 편곡 — 원곡 선율을 유지하는 것은 XL base 뿐이었다. float32 로 16GB 를 넘어 **24GB 이상 GPU** 필요 |
 
+## Runpod 에서 (편곡용 XL base — 48GB GPU)
+
+T4 로는 원곡 선율을 지키는 편곡(XL base)이 메모리가 모자란다. Runpod 템플릿 하나로 자동 설치 · 실행한다.
+
+- 이미지 `runpod/pytorch` (CUDA 12.8), 포트 `7860/http` · `22/tcp`, 컨테이너 디스크 80GB
+- 시작 명령: `bash -c "curl -fsSL https://raw.githubusercontent.com/ChoiKyoungChul/kaggle-acestep-ui/main/runpod/start.sh | bash & exec /start.sh"`
+- 환경변수 `ACE_MODEL` (기본 `acestep-v15-xl-base`)
+- Pod 를 만들면 약 5~8분 뒤 `https://<Pod ID>-7860.proxy.runpod.net` 에 편집 화면이 뜬다. 진행 로그는 `/workspace/acestep.log`
+- 권장 GPU: A40 · RTX A6000(48GB). 끝나면 Pod 를 **삭제**한다(켜 둔 시간만큼 과금)
+
 ## 미리 막아 둔 함정
 
 | 증상 | 원인 · 처리 |
