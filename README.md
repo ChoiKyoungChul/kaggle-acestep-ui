@@ -1,15 +1,64 @@
-# Kaggle · Colab 에서 ACE-Step 1.5 편집 화면(Gradio) 한 번에 설치
+# 오픈소스 AI 원클릭 실행 모음 — Kaggle · Colab · Runpod
 
-## 노트북
+버튼 하나로 설치 → 모델 받기 → 화면(Gradio · ComfyUI)까지 자동으로 뜬다. 무료 T4(Kaggle · Colab)와 유료 48GB GPU(Runpod) 두 길을 함께 둔다.
 
-| 이름 | 설명 | 바로 실행 |
-|---|---|---|
-| **ACE-Step 1.5 — 무료 T4 (Kaggle · Colab)** | 노래 생성 · 가벼운 편곡 시험. turbo 모델, 설치 → 모델 → 공개 주소까지 자동 | [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/elrohm0119/ace-step-1-5-one-click-gradio) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb) |
-| **ACE-Step 1.5 XL base 편곡 — Runpod (48GB)** | 원곡 선율을 지키는 편곡(cover). Deploy 하면 Pod 가 뜨면서 설치 · 모델까지 자동, 5~8분 뒤 화면 | [![Deploy on Runpod](https://img.shields.io/badge/Deploy%20on-Runpod-673ab7)](https://console.runpod.io/deploy?template=7y2vpgweau) |
+- **Kaggle**: 노트북이 열리면 *Copy & Edit* → 오른쪽 Settings 에서 Internet on · GPU T4 → **Run All**
+- **Colab**: 런타임 유형 T4 GPU → **모두 실행**
+- **Runpod**: GPU 고르고 **Deploy** → 5~15분 뒤 Pod 의 *Connect* 에서 화면 열기. 끝나면 Pod **삭제**(켜 둔 시간만큼 과금)
 
-> Kaggle 은 공개 노트북을 **Copy & Edit** 한 뒤 Run All, Runpod 은 공개 템플릿으로 Deploy.
+★ = 이 저장소에서 만들고 실제로 써 본 것. 나머지 무료 노트북은 [TeamAIQ/Colab-notebooks](https://github.com/TeamAIQ/Colab-notebooks)(AIQUEST Academy)가 관리하는 검증된 노트북으로 연결한다.
+**상업 이용**은 모델마다 다르다 — 표의 라이선스를 먼저 본다(2026-10 기준, 쓰기 전에 원문 확인).
 
-## 쓰는 방법
+## 🎵 음악
+
+| 모델 | 용도 · 메모 | 라이선스 | 무료 (T4) | Runpod (48GB) |
+|---|---|---|---|---|
+| ★ **ACE-Step 1.5** | 노래 · 연주곡 생성, 편곡(cover). 원곡 선율을 지키는 편곡은 XL base(48GB)만 됐다 | MIT — 상업 가능 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/elrohm0119/ace-step-1-5-one-click-gradio) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb) | [![Runpod](https://img.shields.io/badge/Deploy-Runpod-673ab7)](https://console.runpod.io/deploy?template=7y2vpgweau) |
+| ACE-Step 1.5 + LoRA 학습 | 내 곡 모음으로 창법 · 편곡 학습 | MIT | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/ACE_Step_1_5_Music_Generator_LoRA_Training_by_AIQUEST.ipynb) | |
+| **YuE2-3B** | 가사 → 전곡(보컬 포함). 한국어 발음 · 감정이 자연스러웠다 | 가중치 CC BY-NC — **비상업** | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/yue2-3b-frontier-full-song-music-generation) | |
+| HeartMuLa 3B | 음악 생성 | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/HeartMuLa_by_AIQUEST.ipynb) | |
+
+## 🖼️ 이미지
+
+| 모델 | 용도 · 메모 | 라이선스 | 무료 (T4) | Runpod (48GB) |
+|---|---|---|---|---|
+| ★ **Krea 2 Turbo** | 사진 · 인물 · 음식 · 인테리어 1순위. 8스텝, 장당 약 15초(A40). 한글 글자는 틀린다 | Krea-2 Community — 연 매출 100만 달러 미만 상업 무료 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/krea-2-turbo-fast-text-to-image-generator) | [![Runpod](https://img.shields.io/badge/Deploy-Runpod-673ab7)](https://console.runpod.io/deploy?template=ce6vhvq3x3) |
+| ★ **Z-Image Turbo** | 감정 클로즈업 · 컷 일괄 | Apache 2.0 | | [![Runpod](https://img.shields.io/badge/Deploy-Runpod-673ab7)](https://console.runpod.io/deploy?template=ce6vhvq3x3) |
+| ★ **Qwen-Image 2512** | 구도 · 소품 지시를 잘 따름, Krea 다음 2순위 | Apache 2.0 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/Qwen_Image_2_1_Uncensored_INT8_Colab_by_AIQUEST.ipynb) (2.1) | [![Runpod](https://img.shields.io/badge/Deploy-Runpod-673ab7)](https://console.runpod.io/deploy?template=ce6vhvq3x3) |
+| HYPIR | 4K 업스케일 · 복원 | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/HYPIR_4K_image_upscale_by_AIQUEST.ipynb) | |
+
+Runpod 이미지 묶음은 ComfyUI 에 Krea 2 · Z-Image · Qwen-Image 를 함께 받는다(약 70GB). ComfyUI 화면의 **Templates** 에서 모델 워크플로를 열어 쓴다.
+
+## 🎬 영상
+
+| 모델 | 용도 · 메모 | 라이선스 | 무료 (T4) | Runpod (48GB) |
+|---|---|---|---|---|
+| ★ **LTX-2.5 22B** | 사진 → 5~8초 영상 + 주변음, 감정 연기에 강함. 1280×704 5초 약 130초(A40) | LTX 라이선스 — 상업 조건 원문 확인 · **HF 접근 동의 필요** | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/ltx-2-5-22b-distilled-video-generator) | [![Runpod](https://img.shields.io/badge/Deploy-Runpod-673ab7)](https://console.runpod.io/deploy?template=7x4p0svb1h) |
+| LTX-2.3 Q4 · A2V · MSR Ref | 텍스트/이미지 → 영상, 음성 → 립싱크, 다중 참조 | 원문 확인 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/ltx-2-3-22b-distilled-1-1-q4-t2v-kaggle) [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/ltx-2-3-a2v-q4-kaggle) [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/ltx-2-3-22b-msr-ref-distilled-1-1-kaggle) | |
+| ★ **Wan 2.2 I2V · S2V** | 사진 → 5초 영상(4스텝 LoRA), 음성 → 립싱크. 카메라 이동 + 군중은 무너진다 | Apache 2.0 | | [![Runpod](https://img.shields.io/badge/Deploy-Runpod-673ab7)](https://console.runpod.io/deploy?template=stb32bbvmy) |
+| MiniMax H3 Turbo | 영상 + 32kHz 소리 동시 생성 | 원문 확인 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/minimax-h3-turbo-int8-video-audio) | |
+| FlashVSR+ | 영상 업스케일 720p~1440p | 원문 확인 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/flashvsr-video-upscaler) | |
+| SoulX FlashHead | 음성 → 말하는 얼굴 | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/SoulX_FlashHead_by_AIQUEST.ipynb) | |
+
+LTX 템플릿은 Deploy 화면의 환경변수 `HF_TOKEN` 에 본인 Hugging Face 토큰을 넣어야 모델을 받는다(Lightricks/LTX-2.5 페이지에서 접근 동의 먼저). 토큰은 Pod 정보에 보이므로 쓰고 나면 Pod 를 지우고 필요하면 토큰을 새로 만든다.
+
+## 🗣️ 음성 · 받아쓰기
+
+| 모델 | 용도 | 라이선스 | 무료 |
+|---|---|---|---|
+| MOSS-TTS v1.5 | 48kHz TTS · 목소리 복제 | 원문 확인 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/moss-tts-v1-5-standalone-foundation-model) |
+| VoxCPM2 | 30개 언어 TTS · 목소리 디자인 | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/VoxCPM2_Gradio_Colab_AIQUEST.ipynb) |
+| OmniVoice | 600개 언어 제로샷 TTS | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/OmniVoice_TTS_By_AIQUEST.ipynb) |
+| Qwen3-TTS 1.7B | TTS | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/Qwen_3_TTS_1_7B_by_AIQUEST.ipynb) |
+| DramaBox | 감정 · 웃음 · 속삭임 대사 | 원문 확인 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/unlockbulk/dramabox-expressive-tts) |
+| SeedVC | 목소리 바꾸기 · 노래 커버 | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/SeedVC_Voice_Changer_by_AIQUEST.ipynb) |
+| Cohere Transcribe | 14개 언어 받아쓰기 | 원문 확인 | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TeamAIQ/Colab-notebooks/blob/main/notebooks/cohere_transcribe_by_AIQUEST.ipynb) |
+
+---
+
+# ACE-Step 1.5 노트북 · 템플릿 자세히
+
+## 쓰는 방법 (Kaggle · Colab)
 
 1. 위 **Open In Kaggle**(→ Copy & Edit) 또는 **Open In Colab** 버튼
 2. Kaggle: 오른쪽 Settings → *Internet on* · *Accelerator GPU T4* / Colab: 런타임 유형 T4 GPU
