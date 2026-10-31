@@ -19,42 +19,44 @@ W=https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split
 X=https://huggingface.co/Lightricks/LTX-2.5/resolve/main
 g(){ mkdir -p $M/$1; [ -f $L/$2 ] && { ln -sf $L/$2 $M/$1/$2; echo "있음 $2"; return; }
   curl -sfL --retry 5 ${4:+-H "Authorization: Bearer $4"} -o $L/$2.part "$3" && mv $L/$2.part $L/$2 && ln -sf $L/$2 $M/$1/$2 && echo "받음 $2" || echo "실패 $2"; }
-NEED_MASTER=0
+NEED_MASTER=0; PIDS=""
+# (그냥 wait 는 로그용 tee 프로세스까지 기다려 멈춘다 → 받기 PID 만 기다린다)
+bg(){ g "$@" & PIDS="$PIDS $!"; }
 for m in $PACKS; do case $m in
   zimage)  # ~20GB, Apache 2.0
-    g diffusion_models z_image_turbo_bf16.safetensors $Z/diffusion_models/z_image_turbo_bf16.safetensors &
-    g text_encoders qwen_3_4b.safetensors $Z/text_encoders/qwen_3_4b.safetensors &
-    g vae ae.safetensors $Z/vae/ae.safetensors & ;;
+    bg diffusion_models z_image_turbo_bf16.safetensors $Z/diffusion_models/z_image_turbo_bf16.safetensors
+    bg text_encoders qwen_3_4b.safetensors $Z/text_encoders/qwen_3_4b.safetensors
+    bg vae ae.safetensors $Z/vae/ae.safetensors ;;
   krea)    # ~19GB, Krea-2 Community License(연 매출 100만 달러 미만 상업 무료)
-    g diffusion_models krea2_turbo_fp8_scaled.safetensors $K/diffusion_models/krea2_turbo_fp8_scaled.safetensors &
-    g text_encoders qwen3vl_4b_fp8_scaled.safetensors $K/text_encoders/qwen3vl_4b_fp8_scaled.safetensors &
-    g vae qwen_image_vae.safetensors $K/vae/qwen_image_vae.safetensors & ;;
+    bg diffusion_models krea2_turbo_fp8_scaled.safetensors $K/diffusion_models/krea2_turbo_fp8_scaled.safetensors
+    bg text_encoders qwen3vl_4b_fp8_scaled.safetensors $K/text_encoders/qwen3vl_4b_fp8_scaled.safetensors
+    bg vae qwen_image_vae.safetensors $K/vae/qwen_image_vae.safetensors ;;
   qwen)    # ~30GB, Apache 2.0
-    g diffusion_models qwen_image_2512_fp8_e4m3fn.safetensors $Q/diffusion_models/qwen_image_2512_fp8_e4m3fn.safetensors &
-    g text_encoders qwen_2.5_vl_7b_fp8_scaled.safetensors $Q/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors &
-    g vae qwen_image_vae.safetensors $Q/vae/qwen_image_vae.safetensors & ;;
+    bg diffusion_models qwen_image_2512_fp8_e4m3fn.safetensors $Q/diffusion_models/qwen_image_2512_fp8_e4m3fn.safetensors
+    bg text_encoders qwen_2.5_vl_7b_fp8_scaled.safetensors $Q/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetensors
+    bg vae qwen_image_vae.safetensors $Q/vae/qwen_image_vae.safetensors ;;
   wan)     # ~37GB, Apache 2.0 — Wan 2.2 I2V 14B + 4스텝 LoRA
-    g diffusion_models wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors $W/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors &
-    g diffusion_models wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors $W/diffusion_models/wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors &
-    g text_encoders umt5_xxl_fp8_e4m3fn_scaled.safetensors $W/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors &
-    g vae wan_2.1_vae.safetensors $W/vae/wan_2.1_vae.safetensors &
-    g loras wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors $W/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors &
-    g loras wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors $W/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors & ;;
+    bg diffusion_models wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors $W/diffusion_models/wan2.2_i2v_high_noise_14B_fp8_scaled.safetensors
+    bg diffusion_models wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors $W/diffusion_models/wan2.2_i2v_low_noise_14B_fp8_scaled.safetensors
+    bg text_encoders umt5_xxl_fp8_e4m3fn_scaled.safetensors $W/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors
+    bg vae wan_2.1_vae.safetensors $W/vae/wan_2.1_vae.safetensors
+    bg loras wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors $W/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors
+    bg loras wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors $W/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors ;;
   s2v)     # ~18GB 추가 — Wan 2.2 S2V 립싱크(wan 과 함께)
-    g diffusion_models wan2.2_s2v_14B_fp8_scaled.safetensors $W/diffusion_models/wan2.2_s2v_14B_fp8_scaled.safetensors &
-    g audio_encoders wav2vec2_large_english_fp16.safetensors $W/audio_encoders/wav2vec2_large_english_fp16.safetensors &
-    g loras wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors $W/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors & ;;
+    bg diffusion_models wan2.2_s2v_14B_fp8_scaled.safetensors $W/diffusion_models/wan2.2_s2v_14B_fp8_scaled.safetensors
+    bg audio_encoders wav2vec2_large_english_fp16.safetensors $W/audio_encoders/wav2vec2_large_english_fp16.safetensors
+    bg loras wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors $W/loras/wan2.2_t2v_lightx2v_4steps_lora_v1.1_high_noise.safetensors ;;
   ltx)     # ~40GB, 48GB GPU — 잠긴 저장소(HF_TOKEN), ComfyUI master 필요
     [ -n "$HF_TOKEN" ] || { echo "ltx: HF_TOKEN 환경변수가 없어 건너뜀"; continue; }
     NEED_MASTER=1
-    g diffusion_models ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors $X/diffusion_models/ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors "$HF_TOKEN" &
-    g text_encoders gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors $X/text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors "$HF_TOKEN" &
-    g vae ltx-2.5-video-vae-bf16.safetensors $X/vae/ltx-2.5-video-vae-bf16.safetensors "$HF_TOKEN" &
-    g vae ltx-2.5-audio-vae-bf16.safetensors $X/vae/ltx-2.5-audio-vae-bf16.safetensors "$HF_TOKEN" &
-    g latent_upscale_models ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors $X/latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors "$HF_TOKEN" & ;;
+    bg diffusion_models ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors $X/diffusion_models/ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors "$HF_TOKEN"
+    bg text_encoders gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors $X/text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors "$HF_TOKEN"
+    bg vae ltx-2.5-video-vae-bf16.safetensors $X/vae/ltx-2.5-video-vae-bf16.safetensors "$HF_TOKEN"
+    bg vae ltx-2.5-audio-vae-bf16.safetensors $X/vae/ltx-2.5-audio-vae-bf16.safetensors "$HF_TOKEN"
+    bg latent_upscale_models ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors $X/latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors "$HF_TOKEN" ;;
   *) echo "모르는 묶음: $m" ;;
 esac; done
-wait
+for p in $PIDS; do wait $p; done
 if [ $NEED_MASTER = 1 ]; then   # LTX-2.5 노드는 태그 버전에 없고 master 에만 있다(2026-10)
   echo "ComfyUI 를 master 로 올리고 다시 시작"
   for i in $(seq 1 60); do [ -x $C/.venv-cu128/bin/python ] && break; sleep 5; done

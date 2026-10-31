@@ -17,9 +17,11 @@ cd /root
 cd ACE-Step-1.5
 hf() { uvx --with hf_transfer --from huggingface_hub hf download "$@"; }
 # 모델 받기와 패키지 설치를 동시에
-[ -f "checkpoints/$MODEL/config.json" ] || hf "ACE-Step/$MODEL" --local-dir "checkpoints/$MODEL" > /root/dl_model.log 2>&1 &
-[ -d checkpoints/vae ] || hf ACE-Step/Ace-Step1.5 --local-dir checkpoints > /root/dl_main.log 2>&1 &
+# (그냥 wait 는 로그용 tee 프로세스까지 기다려 영원히 멈춘다 → 받기 작업 PID 만 기다린다)
+PIDS=""
+[ -f "checkpoints/$MODEL/config.json" ] || { hf "ACE-Step/$MODEL" --local-dir "checkpoints/$MODEL" > /root/dl_model.log 2>&1 & PIDS="$PIDS $!"; }
+[ -d checkpoints/vae ] || { hf ACE-Step/Ace-Step1.5 --local-dir checkpoints > /root/dl_main.log 2>&1 & PIDS="$PIDS $!"; }
 uv sync 2>&1 | tail -2
-wait
+for p in $PIDS; do wait $p; done
 echo "[$(date -u +%T)] 설치 끝 — 화면 시작 (모델을 GPU 에 올리는 데 1~2분)"
 exec uv run acestep --server-name 0.0.0.0 --port 7860 --init_service true --config_path "$MODEL" --init_llm false
