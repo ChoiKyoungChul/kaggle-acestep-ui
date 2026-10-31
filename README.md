@@ -2,7 +2,7 @@
 
 [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb)
-[![Deploy on Runpod](https://img.shields.io/badge/Deploy%20on-Runpod%20(XL%20base%20%ED%8E%B8%EA%B3%A1)-673ab7?logo=data:image/svg%2bxml;base64,PHN2Zz48L3N2Zz4=)](https://console.runpod.io/deploy?template=7y2vpgweau)
+[![Deploy on Runpod](https://img.shields.io/badge/Deploy%20on-Runpod%20(XL%20base%20%ED%8E%B8%EA%B3%A1)-673ab7)](https://console.runpod.io/deploy?template=7y2vpgweau)
 
 | 버튼 | 무엇이 되나 |
 |---|---|
