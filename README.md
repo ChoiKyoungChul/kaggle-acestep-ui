@@ -2,8 +2,14 @@
 
 [![Open In Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://kaggle.com/kernels/welcome?src=https://github.com/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ChoiKyoungChul/kaggle-acestep-ui/blob/main/ace-ui.ipynb)
+[![Deploy on Runpod](https://img.shields.io/badge/Deploy%20on-Runpod%20(XL%20base%20%ED%8E%B8%EA%B3%A1)-673ab7?logo=data:image/svg%2bxml;base64,PHN2Zz48L3N2Zz4=)](https://console.runpod.io/deploy?template=7y2vpgweau)
 
-버튼을 누르면 노트북이 열린다 → GPU(T4) · 인터넷을 켜고 **Run All(모두 실행)** 한 번이면 설치 → 모델 올리기 → 공개 주소까지 자동으로 진행된다.
+| 버튼 | 무엇이 되나 |
+|---|---|
+| **Open In Kaggle / Colab** | 무료 T4 — 노트북이 열린다 → GPU · 인터넷 켜고 **Run All** 한 번이면 설치 → 모델 → 공개 주소까지 자동. 새 곡 생성 · 가벼운 시험용(turbo) |
+| **Deploy on Runpod** | 유료 48GB GPU — GPU(A40 권장)만 고르고 Deploy 하면 Pod 가 뜨면서 설치 · 모델까지 자동, 5~8분 뒤 `https://<Pod ID>-7860.proxy.runpod.net`. 원곡 선율을 지키는 **편곡(XL base)** 용. 끝나면 Pod 삭제 |
+
+Runpod 템플릿은 지금 **비공개**(만든 계정에서만 버튼이 열린다). 다른 계정은 아래 「Runpod 에서」 설정으로 템플릿을 하나 만들면 같다.
 [ACE-Step 1.5](https://github.com/ace-step/ACE-Step-1.5) 공식 코드를 받아 쓰며, 편곡(Remix · cover) · 새 곡 생성용이다.
 
 ## 쓰는 방법
