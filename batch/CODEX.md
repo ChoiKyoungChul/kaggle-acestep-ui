@@ -1,4 +1,4 @@
-# AI 용 Kaggle 일괄 작업 지침 — ACE-Step · Krea 2 · YuE2 · LTX-2.5 (+ Z-Image · Qwen · Wan 시험 중)
+# AI 용 Kaggle 일괄 작업 지침 — ACE-Step · Krea 2 · YuE2 · LTX-2.5 · Z-Image · Qwen · Wan 2.2
 
 Codex · Claude Code · Gemini 등 AI 코딩 도구가 Kaggle 무료 GPU(T4 ×2, 주 30시간)로 곡 · 이미지 · 영상을 만들 때 **이 문서만 따른다.**
 설치 · 노트북 작성 · 다른 방법 찾기를 하지 않는 것이 핵심이다. AI 가 헤매는 원인은 거의 다 "모델을 직접 설치하려다 막힌 것"이다.
@@ -54,14 +54,20 @@ python fetch_sources.py               # 빌더가 읽는 원본 노트북 받기
 
 실측(2026-11-02, T4 ×2): 모델 39.6GB 받기 약 3분, 704p 5초 컷 약 6분, 1컷 세션 전체 약 14분. 10컷 ≈ 70분. 빠르게는 `--res 480`.
 
-## 5. Z-Image · Qwen-Image · Wan 2.2 (시험 중)
+## 5. Z-Image · Qwen-Image · Wan 2.2 (Wan2GP 엔진, 11/2 실측)
 
-`build_wgp_batch.py` 가 Wan2GP 엔진의 일괄 API 로 돌린다. **Kaggle 실측 확인 전**이라 실패할 수 있다.
+`build_wgp_batch.py` 가 Wan2GP 엔진의 일괄 API 로 돌린다. 모델은 엔진이 DeepBeepMeep 저장소에서 받는다(HF 토큰 필요 없음). 결과 이미지는 jpg.
 ```
-python build_wgp_batch.py zimage <job_img.json> --slug zimg-<이름>
-python build_wgp_batch.py qwen   <job_img.json> --slug qwen-<이름>
-python build_wgp_batch.py wan    <ltx_shots 형식.json> --slug wan-<이름>
+python build_wgp_batch.py zimage <job_img.json> --slug zimg-<이름>          # Krea 와 같은 작업 파일
+python build_wgp_batch.py qwen   <job_img.json> --slug qwen-<이름> [--steps 15]
+python build_wgp_batch.py wan    <ltx_shots 형식.json> --slug wan-<이름> [--res 832x480]
 ```
+
+| 모델 | 1개 시간 (T4 ×2) | 세션 전체 | 판단 |
+|---|---|---|---|
+| Z-Image Turbo | 1920×1088 약 200초(모델 받기 포함) | 약 9분 | 쓸 만함 — Krea 와 함께 이미지 기본 |
+| Qwen-Image 2512 (20B, 30스텝) | 1920×1088 약 17분 | 약 22분 | 느림 — 꼭 필요한 컷만, `--steps 15` 로 줄여 쓰기 |
+| Wan 2.2 I2V Lightning (14B ×2) | 1280×720 5초 **약 82분** | 약 84분 | 너무 느림(RAM 31GB 부족으로 모델 일부만 고정) — **영상은 LTX 를 쓴다**. 꼭 Wan 이면 `--res 832x480` 또는 Runpod |
 
 ## 6. 끝나면
 

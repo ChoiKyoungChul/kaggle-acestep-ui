@@ -9,7 +9,9 @@ PC 에서 명령 두 줄로 Kaggle 무료 GPU(T4 ×2, 주 30시간)에 곡 · �
 | YuE2 (노래, 비상업) | `build_song_batch.py yue2` | mp3 | 검증 |
 | Krea 2 Turbo (이미지) | `build_krea_batch.py` | png | 검증 |
 | LTX-2.5 (사진 → 영상 + 소리) | `build_ltx_batch.py` | mp4 | 검증(11/2) |
-| Z-Image · Qwen-Image · Wan 2.2 | `build_wgp_batch.py` | png · mp4 | 시험 중 |
+| Z-Image (이미지) | `build_wgp_batch.py zimage` | jpg | 검증(11/2) 장당 약 200초 |
+| Qwen-Image 2512 (이미지) | `build_wgp_batch.py qwen` | jpg | 검증(11/2) 장당 약 17분 — 느림 |
+| Wan 2.2 (사진 → 영상) | `build_wgp_batch.py wan` | mp4 | 검증(11/2) 5초 약 82분 — 매우 느림, LTX 권장 |
 
 ## 설치 (Windows PowerShell)
 
