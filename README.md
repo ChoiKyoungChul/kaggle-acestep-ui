@@ -58,6 +58,12 @@ LTX 템플릿은 Deploy 화면의 환경변수 `HF_TOKEN` 에 본인 Hugging Fac
 
 # ACE-Step 1.5 노트북 · 템플릿 자세히
 
+## 🤖 AI 코딩 도구로 일괄 실행 (Codex · Claude Code)
+
+버튼 화면 대신 PC 의 AI 에게 맡기는 방법: 작업 파일(가사 · 프롬프트 · 컷 목록)을 만들면 명령 두 줄로 Kaggle 무료 GPU 에서 곡 · 이미지 · 영상을 뽑아 온다. ACE-Step · YuE2 · Krea 2 · **LTX-2.5 영상** 검증, Z-Image · Qwen · Wan 2.2 시험 중.
+
+→ **[batch/README.md](batch/README.md)** · AI 에게 줄 지침 **[batch/CODEX.md](batch/CODEX.md)**
+
 ## 쓰는 방법 (Kaggle · Colab)
 
 1. 위 **Open In Kaggle**(→ Copy & Edit) 또는 **Open In Colab** 버튼

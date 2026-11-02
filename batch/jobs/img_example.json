@@ -1,0 +1,12 @@
+{
+ "_note": "Krea · Z-Image · Qwen 공통 이미지 작업 예시",
+ "seeds": [
+  1
+ ],
+ "images": {
+  "c01": {
+   "ratio": "16:9hd",
+   "prompt": "A cozy cafe window on a rainy afternoon, raindrops on the glass, a latte and a croissant on a round wooden table, blurred pedestrians with umbrellas outside, 35mm film photo, no text"
+  }
+ }
+}

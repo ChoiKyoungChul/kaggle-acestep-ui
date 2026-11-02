@@ -1,0 +1,13 @@
+{
+ "_note": "LTX · Wan 영상 작업 예시 — src 폴더의 <name>.png 를 첫 장면으로 쓴다",
+ "src": "ltx_example_img",
+ "seed": 4242,
+ "style": "Cinematic, realistic, subtle natural motion, steady camera, film grain. Soft rain ambience, quiet cafe murmur.",
+ "shots": [
+  {
+   "name": "c01",
+   "secs": 5,
+   "prompt": "Rain streams down the cafe window, droplets slide and merge on the glass, steam rises gently from a coffee cup, blurred street lights shimmer outside."
+  }
+ ]
+}

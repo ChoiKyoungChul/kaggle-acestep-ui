@@ -1,0 +1,14 @@
+{
+ "_note": "ACE-Step 예시 — 가사 · 스타일은 바꿔 쓴다",
+ "lyrics": "[Verse 1]\n창밖에 비가 내리면\n오래된 노래를 틀어\n\n[Chorus]\n괜찮아 천천히 가도\n오늘은 그냥 쉬어 가",
+ "language": "ko",
+ "seconds": 90,
+ "bpm": 84,
+ "key": "D major",
+ "seeds": [
+  7
+ ],
+ "styles": {
+  "ballad": "warm acoustic ballad, soft female vocal, fingerpicked guitar, gentle piano, cozy, high quality"
+ }
+}

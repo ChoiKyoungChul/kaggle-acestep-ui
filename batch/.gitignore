@@ -1,0 +1,9 @@
+# 받아 온 원본 노트북 · 만든 노트북 · 결과 · 사용 기록은 올리지 않는다
+krea-src/
+src-ace-step/
+src-yue2-music/
+src-ltx25/
+*-out/
+usage*.csv
+*/kernel-metadata.json
+*.log
