@@ -1,5 +1,7 @@
 # 오픈소스 AI 원클릭 실행 모음 — Kaggle · Colab · Runpod
 
+> 🆕 **Kaggle 무료 GPU 자동 연동 설치 프로그램 v3** — Windows 에서 `INSTALL.cmd` 더블클릭으로 Kaggle 작업 도구 + Codex · Claude Code · Antigravity 스킬 설치. **[ZIP 내려받기](https://github.com/ChoiKyoungChul/kaggle-acestep-ui/releases/download/kaggle-kit-v3/kaggle-free-gpu-full-package-v3.zip)** · [설명](kaggle-kit/)
+
 버튼 하나로 설치 → 모델 받기 → 화면(Gradio · ComfyUI)까지 자동으로 뜬다. 무료 T4(Kaggle · Colab)와 유료 48GB GPU(Runpod) 두 길을 함께 둔다.
 
 - **Kaggle**: 노트북이 열리면 *Copy & Edit* → 오른쪽 Settings 에서 Internet on · GPU T4 → **Run All**
